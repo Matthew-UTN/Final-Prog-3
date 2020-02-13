@@ -51,11 +51,11 @@
       <div class="form-group">
         <div>
           <label>dni
-            <input type="text" formControlName="dni">
+            <input type="number" formControlName="dni">
           </label>
         </div>
         <div class="alert" *ngIf="!personaBas.controls['dni'].valid && personaBas.controls['dni'].touched">
-          {{titleAlert}}
+          Ingrese un dni valido
         </div>
       </div>
       <input type="submit" class="btn btn-outline-primary" value="Submit Form" [disabled]="!personaBas.valid">
