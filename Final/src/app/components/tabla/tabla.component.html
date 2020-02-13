@@ -1,0 +1,65 @@
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of personas">
+        <td>{{persona.id}}</td>
+        <td>{{persona.nombre}}</td>
+        <td>{{persona.apellido}}</td>
+        <td>{{persona.dni}}</td>
+        <td>
+          <button type="button" class="btn btn-danger mr-3" (click)="delete(persona.id)">Eliminar</button>
+          <button type="button" class="btn btn-primary" (click)="update(persona.id)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <div *ngIf="!nombre; else forminfo">
+    <form [formGroup]="personaBas" (ngSubmit)="addPost(personaBas.value)">
+      <h1>reactive form</h1>
+      <div class="form-group">
+        <div>
+          <label>nombre
+            <input type="text" formControlName="nombre">
+          </label>
+        </div>
+        <div class="alert" *ngIf="!personaBas.controls['nombre'].valid && personaBas.controls['nombre'].touched">
+          {{titleAlert}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div>
+          <label>apellido
+            <input type="text" formControlName="apellido">
+          </label>
+        </div>
+        <div class="alert" *ngIf="!personaBas.controls['apellido'].valid && personaBas.controls['apellido'].touched">
+          {{titleAlert}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div>
+          <label>dni
+            <input type="text" formControlName="dni">
+          </label>
+        </div>
+        <div class="alert" *ngIf="!personaBas.controls['dni'].valid && personaBas.controls['dni'].touched">
+          {{titleAlert}}
+        </div>
+      </div>
+      <input type="submit" class="btn btn-outline-primary" value="Submit Form" [disabled]="!personaBas.valid">
+      <button type="button" class="btn btn-warning" (click)="refresh()">Refresh</button>
+    </form>
+  </div>
+</div>
